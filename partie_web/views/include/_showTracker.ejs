@@ -1,0 +1,15 @@
+<% for(var i=0 ; i<trackers.length ; i++) { %>
+    <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= trackers[i].nom %></td>
+        <td><%= trackers[i].adressemac %></td>
+       
+      
+        <td>
+            <a type="button" class="btn btn-outline-primary" href="/views/modifiertracker?id=<%= trackers[i]._id %>" >Modifier</a>
+          
+            <a type="button" class="btn btn-outline-danger delete" href="" data-id="<%= trackers[i]._id %>">Supprimer</a>
+            <a type="button" class="btn btn-outline-success "  href="/views/trackeraffectation/<%= trackers[i]._id %>">Activer Ce Tracker</a>
+        </td>
+    </tr>
+    <% } %>

@@ -1,0 +1,28 @@
+<%- include('include/_header') %>
+
+<div class="container mt-5">
+    <table class="table table-hover">
+        <thead>
+            <a type="button" class="btn btn-outline-dark" href="/views/ajoutervehicule">Ajouter Une Véhicule</a>
+            <tr class="table-dark" style="background-color: #343a40;">
+                
+                <th scope="col" style="background-color: #343a40;">ID</th>
+                <th scope="col" style="background-color: #343a40;">Type</th>
+                <th scope="col" style="background-color: #343a40;">Matricule</th>
+                <th scope="col" style="background-color: #343a40;">marque</th>
+                <th scope="col" style="background-color: #343a40;">Date Mise en circulation</th>
+                <th scope="col" style="background-color: #343a40;">Photo</th>
+                <th scope="col" style="background-color: #343a40;">Action</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+        
+            <%- include('include/_show') %>
+        
+        </tbody>
+    </table>
+</div>
+
+
+<%- include('include/_footer') %>

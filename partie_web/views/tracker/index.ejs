@@ -1,0 +1,25 @@
+<%- include('../include/_header') %>
+
+<div class="container mt-5">
+    <table class="table table-hover">
+        <thead>
+            <a type="button" class="btn btn-outline-dark" href="/views/ajoutertracker">Ajouter Un Tracker</a>
+            <tr class="table-dark" style="background-color: #343a40;">
+                
+                <th scope="col" style="background-color: #343a40;">ID</th>
+                <th scope="col" style="background-color: #343a40;">Tracker</th>
+                <th scope="col" style="background-color: #343a40;">@MAC</th>
+                <th scope="col" style="background-color: #343a40;">Action</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+        
+            <%- include('../include/_showTracker') %>
+        
+        </tbody>
+    </table>
+</div>
+
+
+<%- include('../include/_footer') %>
