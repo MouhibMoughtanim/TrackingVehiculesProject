@@ -20,12 +20,14 @@ $("#modifier_vehicule").submit(function(event){
 
     $.ajax(request).done(function(response){
         alert("Data Updated Successfully!");
+        window.location.href="http://localhost:3700/";
     })
-
+    
+    
 })
 
 if(window.location.pathname == "/"){
-    $ondelete = $(".table tbody td a.delete");
+    $ondelete = $(".tableo tbody td a.delete");
     $ondelete.click(function(){
         var id = $(this).attr("data-id")
 
@@ -44,7 +46,7 @@ if(window.location.pathname == "/"){
     })
 }
 if(window.location.pathname == "/trackers"){
-    $ondelete = $(".table tbody td a.delete");
+    $ondelete = $(".tableo tbody td a.delete");
     $ondelete.click(function(){
         var id = $(this).attr("data-id")
 
@@ -78,9 +80,10 @@ $("#modifier_tracker").submit(function(event){
         "method" : "PUT",
         "data" : data
     }
-
+    
     $.ajax(request).done(function(response){
         alert("Data Updated Successfully!");
+        window.location.href="http://localhost:3700/trackers";
     })
-
+   
 })

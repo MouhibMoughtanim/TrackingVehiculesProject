@@ -1,8 +1,9 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 
 
-var schema = new mongoose.Schema({
-    type : {
+var schema = new mongoose.Schema(
+   { type : {
         type : String,
         required: true
     },
@@ -11,9 +12,12 @@ var schema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    image : String,
     marque : String
+},{timestamps : true}
+
     
-})
+)
 
 const Vehicule= mongoose.model('Vehicule', schema);
 

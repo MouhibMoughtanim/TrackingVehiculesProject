@@ -120,11 +120,17 @@ exports.delete =async (req, res)=>{
 exports.filter =  (req, res)=>{
 
         const debut = new Date(req.params.debut);
+        debut.setHours(debut.getHours()+1)
         const fin = new Date(req.params.fin);
+        fin.setHours(fin.getHours()+1)
        const id = req.params.vehicule_id;
-        console.log(debut.toISOString())
+       
+       
+       console.log(debut.toISOString())
         console.log(fin.toISOString())
-       Position.find({
+       
+       
+        Position.find({
             createdAt: {
                 $gte: debut.toISOString(),
                 $lt: fin.toISOString()
@@ -146,4 +152,22 @@ exports.filter =  (req, res)=>{
         
 
     
+}
+exports.getLast =  (req, res)=>{
+
+    const id = req.params.vehicule_id;
+    
+   
+     Position.find({vehicule_id : id}).sort({createdAt:-1}).limit(1)
+        .then(data =>{
+            if(!data){
+                res.status(404).send({ message : "Not found user with id "+ id})
+            }else{
+                res.send(data)
+            }
+        })
+        .catch(err =>{
+            res.status(500).send({ message: "Erro retrieving user with id " + id})
+        })
+
 }

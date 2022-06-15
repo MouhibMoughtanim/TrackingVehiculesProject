@@ -1,6 +1,7 @@
 const { redirect } = require('express/lib/response');
 var Helper = require('../model/HelperModel');
-
+var Vehicule = require('../model/model');
+var Tracker = require('../model/TrackerModel');
 // create and save new user
 exports.create = (req,res)=>{
     const current =new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') 
@@ -88,7 +89,23 @@ exports.create = (req,res)=>{
   
 // retrieve and return all users/ retrive and return a single user
 exports.find = async (req, res)=>{
-
+    var users = [];
+    var size=[];
+    var trackers_id =[];
+    var vehicules_id = [];
+    var trackers =[];
+    var vehicules = [];
+    var objets =[];
+    function empty() {
+        users = [];
+       size=[];
+        trackers_id =[];
+       vehicules_id = [];
+        trackers =[];
+        vehicules = [];
+        
+   }
+    
     if(req.query.id){
         const id = req.query.id;
 
@@ -105,13 +122,57 @@ exports.find = async (req, res)=>{
             })
 
     }else{
-        await Helper.find()
+        await Helper.find({ fin: { $exists: true }})   //Helper.find({ fin: { $exists: true }})
             .then(user => {
-                res.send(user)
+                users=user;
+                size.push(user.length);
+                
+                for(var i=0;i<size;i++){
+                    trackers_id.push(user[i].tracker_id);
+                    vehicules_id.push(user[i].vehicule_id);
+                }
+                
             })
             .catch(err => {
                 res.status(500).send({ message : err.message || "Error Occurred while retriving user information" })
-            })
+                })
+            
+       
+      
+            // vehicules
+            for(var i=0;i<size[0];i++){
+               
+             
+                vehicules.push(await Vehicule.findOne({_id:vehicules_id[i]}));
+                     
+             }
+             for(var i=0;i<size[0];i++){
+               
+             
+                trackers.push(await Tracker.findOne({_id:trackers_id[i]}));
+                     
+             }
+             
+            
+             for(var i=0;i<size[0];i++){
+               
+                var objet ={
+                    "tracker": trackers[i].nom,
+                    "vehicule": vehicules[i].matricule,
+                    "debut":users[i].debut,
+                    "fin" : users[i].fin
+                 };
+                 objets.push(objet);
+                
+                     
+             }
+             res.send(objets)
+             
+           
+         
+            
+            
+
     }
 
     

@@ -1,7 +1,7 @@
 
 jQuery(function($) {
 
-    document.getElementById("filter1").onclick = function () {
+    document.getElementById("filter11").onclick = function () {
         location.href="http://localhost:3700/api/positions/filter/map/"+document.getElementById("debut").value+'/'+document.getElementById("fin").value+'/'+document.getElementById("vehicule_id").value ;
      };  
     

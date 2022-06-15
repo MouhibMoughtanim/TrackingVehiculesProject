@@ -14,7 +14,7 @@ exports.create = (req,res)=>{
        type : req.body.type,
         matricule : req.body.matricule,
        marque : req.body.marque,
-       trackers:req.body.trackers
+       image : req.file.filename
     })
 
     // save user in the database

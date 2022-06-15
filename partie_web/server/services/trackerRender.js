@@ -1,4 +1,5 @@
 const axios = require('axios');
+const Helper = require('../model/HelperModel');
 
 PORT = 3700;
 
@@ -33,6 +34,19 @@ exports.vehiculePage = (req,res)=>{
         vehicules : response.data,
         tracker_id : req.params.tracker_id
     })
+})
+    .catch(err=>{
+        res.send(err);
+    })
+};
+
+exports.historiquePage = (req,res)=>{
+    axios.get(`http://localhost:${PORT}/api/helper`)    
+    .then(function(response){
+    res.render('tracker/indexHistorique.ejs',
+    {
+        objets : response.data
+        })
 })
     .catch(err=>{
         res.send(err);

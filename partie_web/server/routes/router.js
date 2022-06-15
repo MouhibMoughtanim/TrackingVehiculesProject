@@ -7,15 +7,18 @@ const controller = require('../controller/controller');
 const positioncontroller = require('../controller/positioncontroller');
 const trackercontroller = require('../controller/TrackerController');
 const helpercontroller = require('../controller/HelperController');
+const LocationController = require('../controller/LocationController');
 
 route.get('/',services.homePage);
 route.get('/trackers',trackerServices.trackerPage);
 route.get('/api/positions/:vehicule_id',positionServices.positionPage);
 route.get('/api/positions/filter/map/:debut/:fin/:vehicule_id',positionServices.filtredPositionPage);
+route.get('/view/positions/:vehicule_id/last',positionServices.lastPositionPage);
 route.get('/views/ajoutervehicule',services.ajouter_vehicule);
 route.get('/views/modifiervehicule',services.modifier_vehicule);
 route.get('/views/ajoutertracker',trackerServices.ajouter_tracker);
 route.get('/views/modifiertracker',trackerServices.modifier_tracker);
+route.get('/views/historique',trackerServices.historiquePage);
 route.get('/views/trackeraffectation/:tracker_id',trackerServices.vehiculePage);
 
 
@@ -26,7 +29,9 @@ route.delete('/api/vehicules/:id',controller.delete);
 route.get('/api/vehicules',controller.find);
 //API Positions
 route.get('/api/positions',positioncontroller.find);
+route.get('/api/locations',LocationController.find);
 route.get('/api/positions/filter/:debut/:fin/:vehicule_id',positioncontroller.filter);
+route.get('/api/positions/:vehicule_id/last',positioncontroller.getLast);
 route.post('/api/positions',positioncontroller.create);
 //API trackers 
 route.post('/api/trackers',trackercontroller.create);
